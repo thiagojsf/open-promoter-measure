@@ -1,54 +1,51 @@
+import { Segment } from './segment';
+import { Ranking } from './ranking';
 
 export class NPS {
 
-    private _nota: number;
-    private _comentario: string;
-    private _data: Date;
-    private _segmento: Segmento;
-    private _classificacao: Classificacao;
-    private _pergunta: string;
+    private _grade: number;
+    public comment: string;
+    readonly date: Date;
+    public segment: Segment;
+    private _ranking: Ranking;
+    public question: string;
 
     constructor() {
-        this._data = new Date();
+        this.date = new Date();
     }
 
-    get nota() : number {
-        return this._nota;
+    get grade(): number {
+        return this._grade;
     }
 
-    set nota(nota: number) {
-        this._nota = nota;
-    }
-    
-    get comentario() : string {
-        return this._comentario;
+    set grade(grade: number) {
+        this._grade = grade;
+
+        if (grade > 8)
+            this._ranking = Ranking.Promoter;
+        else if (grade < 7)
+            this._ranking = Ranking.Refractor;
+        else
+            this._ranking = Ranking.Passive;
     }
 
-    set comentario(comentario: string) {
-        this._comentario = comentario;
+    get ranking() : Ranking {
+        return this._ranking;
     }
 
-    get segmento() : Segmento {
-        return this._segmento;
-    }
+    public static calculateNPS(npsList: NPS[]): number {
 
-    set segmento(segmento: Segmento) {
-        this._segmento = segmento;
-    }
+        var countPromoter: number = 0;
+        var countRefractor: number = 0;
 
-    get classificacao() : Classificacao {
-        return this._classificacao;
-    }
+        for (let nps of npsList) {
+            if(nps.ranking === Ranking.Promoter)
+                countPromoter++;
+            
+            if(nps.ranking == Ranking.Refractor)
+                countRefractor++;
+        }
 
-    set classificacao(classificacao: Classificacao) {
-        this._classificacao = classificacao;
-    }
-
-    get pergunta() : string {
-        return this._pergunta;
-    }
-
-    set pergunta(pergunta: string) {
-        this._pergunta = pergunta;
+        return 100 * (countPromoter - countRefractor);
     }
 }
