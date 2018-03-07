@@ -1,13 +1,9 @@
 import { Gender } from "./gender";
 
 export interface Person {
-
-   name: string;
-   emailList: string[];
-   isBrazilian: boolean;
+    name?: string;
+   email?: string;
    age: number;
-   details: any;
    gender: Gender;
-   voidTest: void;
 
 }
