@@ -1,4 +1,4 @@
-export enum ranking{
+export enum Ranking{
     Promoter,
     Refractor,
     Passive
