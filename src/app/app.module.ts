@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { QuestionComponent } from './question/question.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LogoComponent } from './logo/logo.component';
+import { SetupScreenComponent } from './setup-screen/setup-screen.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { LogoComponent } from './logo/logo.component';
     AppComponent,
     QuestionComponent,
     NavbarComponent,
-    LogoComponent
+    LogoComponent,
+    SetupScreenComponent
   ],
   imports: [
     BrowserModule
