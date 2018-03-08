@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-logo',
@@ -6,12 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logo.component.css']
 })
 export class LogoComponent implements OnInit {
-public urlLogo:string;
+  @Input()urlLogo:string;
+  
 
   constructor() { }
 
   ngOnInit() {
-    this.urlLogo = "assets/toyota-logo.jpg";
+    
   }
 
 }
