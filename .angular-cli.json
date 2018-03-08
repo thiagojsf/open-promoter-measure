@@ -21,7 +21,7 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "linx-bootstrap.css"
+        "../linx-bootstrap/linx-bootstrap.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
