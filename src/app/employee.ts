@@ -10,8 +10,9 @@ export namespace HR {
       details: any;
       gender: any;
       voidTest: void;
+      city: string;
       private _score: number;
-
+      
       get score() : number {
          return this._score;
       }
