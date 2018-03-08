@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'question',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionComponent implements OnInit {
 
-  question:string = 'Você ficou satisfeito com o nosso atendimento?';
+  @Input() question: string;
+  @Input() answer: string;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
