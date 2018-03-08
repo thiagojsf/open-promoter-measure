@@ -11,9 +11,18 @@ export class DadosPessoaisComponent implements OnInit {
   email: string;
   idade: Number;
   sexo: string;
+  
   constructor() { }
 
+  salvarDados(event) {
+    console.log("nome: " + this.nome);
+    console.log("email: " + this.email);
+    console.log("idade: " + this.idade);
+    console.log("sexo: " + this.sexo);
+      }
+
   ngOnInit() {
+  
   }
 
 }
