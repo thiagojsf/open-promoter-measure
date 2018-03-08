@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { DadosPessoaisComponent } from './dados-pessoais/dados-pessoais.component';
+import { GreetingComponent } from './greeting/greeting.component';
 import { QuestionComponent } from './question/question.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LogoComponent } from './logo/logo.component';
@@ -13,6 +14,7 @@ import { LogoComponent } from './logo/logo.component';
   declarations: [
     AppComponent,
     DadosPessoaisComponent,
+    GreetingComponent,
     QuestionComponent,
     NavbarComponent,
     LogoComponent
