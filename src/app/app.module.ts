@@ -12,6 +12,7 @@ import { SetupScreenComponent } from './setup-screen/setup-screen.component';
 
 import { TextboxComponent } from './textbox/textbox.component';
 import { ThanksComponent } from './thanks/thanks.component';
+import { RankingComponent } from './ranking/ranking.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ThanksComponent } from './thanks/thanks.component';
     TextboxComponent,
     ThanksComponent,
     SetupScreenComponent,
-    TextboxComponent
+    TextboxComponent,
+    RankingComponent
   ],
   imports: [
     BrowserModule,
