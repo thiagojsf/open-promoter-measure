@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-prod": "ng build --prod --aot",
-    "postinstall": "npm run build"
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
