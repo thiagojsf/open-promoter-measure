@@ -8,6 +8,8 @@ import { GreetingComponent } from './greeting/greeting.component';
 import { QuestionComponent } from './question/question.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LogoComponent } from './logo/logo.component';
+import { SetupScreenComponent } from './setup-screen/setup-screen.component';
+
 import { TextboxComponent } from './textbox/textbox.component';
 import { ThanksComponent } from './thanks/thanks.component';
 
@@ -19,7 +21,9 @@ import { ThanksComponent } from './thanks/thanks.component';
     NavbarComponent,
     LogoComponent,
     TextboxComponent,
-    ThanksComponent
+    ThanksComponent,
+    SetupScreenComponent,
+    TextboxComponent
   ],
   imports: [
     BrowserModule,
