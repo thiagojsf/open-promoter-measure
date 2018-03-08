@@ -9,6 +9,7 @@ import { QuestionComponent } from './question/question.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LogoComponent } from './logo/logo.component';
 import { TextboxComponent } from './textbox/textbox.component';
+import { ThanksComponent } from './thanks/thanks.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TextboxComponent } from './textbox/textbox.component';
     QuestionComponent,
     NavbarComponent,
     LogoComponent,
-    TextboxComponent
+    TextboxComponent,
+    ThanksComponent
   ],
   imports: [
     BrowserModule,
