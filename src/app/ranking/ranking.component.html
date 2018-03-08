@@ -1,0 +1,4 @@
+
+<div *ngFor="let bola of bolas; let i = index" (click)="mudarCor( i )" [ngClass]="bola.isCheia ? 'bola-cheia' : 'bola-vazia'">
+  <p class="font">{{i}}</p>
+</div>
