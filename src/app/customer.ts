@@ -7,6 +7,7 @@ export class Customer implements Person {
    public email:string;
    public age:number;
    public gender:Gender;
+   public city:string;
 
    
 
