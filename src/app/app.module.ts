@@ -10,7 +10,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LogoComponent } from './logo/logo.component';
 import { SetupScreenComponent } from './setup-screen/setup-screen.component';
 
-import { TextboxComponent } from './textbox/textbox.component';
+import { ThanksComponent } from './thanks/thanks.component';
+import { RankingComponent } from './ranking/ranking.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +20,9 @@ import { TextboxComponent } from './textbox/textbox.component';
     QuestionComponent,
     NavbarComponent,
     LogoComponent,
+    ThanksComponent,
     SetupScreenComponent,
-    TextboxComponent
+    RankingComponent
   ],
   imports: [
     BrowserModule,
