@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from '../customer';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,9 +10,15 @@ import { Customer } from '../customer';
 
 export class SignUpComponent implements OnInit {
 
-  customer : Customer; 
+  constructor(public dataService: DataService) { }
 
-  constructor() { }
+  get customer():Customer { 
+    return this.dataService.customerData; 
+  } 
+
+  set customer(value: Customer) { 
+    this.dataService.customerData = value; 
+  } 
 
   ngOnInit() {
   }

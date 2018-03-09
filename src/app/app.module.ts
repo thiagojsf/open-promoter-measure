@@ -15,6 +15,9 @@ import { SetupScreenComponent } from './setup-screen/setup-screen.component';
 import { ThanksComponent } from './thanks/thanks.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { WelcomeScreenComponent } from './welcome-screen/welcome-screen.component';
+
+import { DataService } from './data.service';
 
 @NgModule({
   declarations: [
@@ -27,16 +30,18 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     ThanksComponent,
     SetupScreenComponent,
     RankingComponent,
-    SignUpComponent
+    SignUpComponent,
+    WelcomeScreenComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: 'signup', component: SignUpComponent}
+      { path: 'signup', component: SignUpComponent },
+      { path: 'welcome', component: WelcomeScreenComponent }
     ])
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

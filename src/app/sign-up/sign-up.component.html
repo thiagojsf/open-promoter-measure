@@ -1,5 +1,5 @@
-<app-navbar></app-navbar>
+<div class="col-md-8 col-md-offset-2">
+    <app-dados-pessoais [(customer)]="customer"></app-dados-pessoais>
 
-<app-dados-pessoais [(customer)]="customer"></app-dados-pessoais>
-
-<button class="btn btn-default" routerLink="app-welcome-screen">ENVIAR</button>
+    <button class="btn btn-primary btn-lg" [routerLink]="['/welcome']">ENVIAR</button>
+</div>
