@@ -1,27 +1,24 @@
-<div class="input-group">
-  <span class="input-group-addon" >Nome</span>
-  <input type="text" [(ngModel)]="nome" class="form-control" placeholder="Nome" aria-describedby="basic-addon1">
+<div class="form-group">
+  <label>Nome</label>
+  <input (blur)="update()" type="text" [(ngModel)]="customer.name" class="form-control" placeholder="Nome">
 </div>
 
-<div class="input-group">
-  <span class="input-group-addon" >Email</span>
-  <input type="text"  [(ngModel)]="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1">
+<div class="form-group">
+  <label>Email</label>
+  <input (blur)="update()" type="text" [(ngModel)]="customer.email" class="form-control" placeholder="Email">
 </div>
 
-<div class="input-group">
-  <span class="input-group-addon" >Idade</span>
-  <input type="text"  [(ngModel)]="idade" class="form-control" placeholder="Idade" aria-describedby="basic-addon1">
+<div class="form-group">
+  <label>Idade</label>
+  <input (blur)="update()" type="text" [(ngModel)]="customer.age" class="form-control" placeholder="Idade">
 </div>
 
-<div class="input-group">
-  <span class="input-group-addon" >Sexo</span>
-  <input type="text" [(ngModel)]="sexo" class="form-control" placeholder="Sexo" aria-describedby="basic-addon1">
+<div class="form-group">
+  <label>Sexo</label>
+  <input (blur)="update()" type="text" [(ngModel)]="customer.gender" class="form-control" placeholder="Sexo">
 </div>
 
-<div class="input-group">
-  <span class="input-group-addon" >Cidade</span>
-  <input type="text" [(ngModel)]="cidade" class="form-control" placeholder="Cidade" aria-describedby="basic-addon1">
+<div class="form-group">
+  <label for="">Cidade</label>
+  <input (blur)="update()" type="text" [(ngModel)]="customer.city" class="form-control" placeholder="Cidade">
 </div>
-
-<!-- Primary button -->
-<button type="button" (click)="salvarDados($event)" class="btn btn-primary">Salvar</button>

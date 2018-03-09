@@ -2,7 +2,7 @@ import 'rxjs/add/operator/map';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { DadosPessoaisComponent } from './dados-pessoais/dados-pessoais.component';
@@ -14,6 +14,7 @@ import { SetupScreenComponent } from './setup-screen/setup-screen.component';
 
 import { ThanksComponent } from './thanks/thanks.component';
 import { RankingComponent } from './ranking/ranking.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -25,11 +26,15 @@ import { RankingComponent } from './ranking/ranking.component';
     LogoComponent,
     ThanksComponent,
     SetupScreenComponent,
-    RankingComponent
+    RankingComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot([
+      { path: 'signup', component: SignUpComponent}
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

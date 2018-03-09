@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Customer } from '../customer';
 
 @Component({
   selector: 'app-dados-pessoais',
@@ -7,25 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class DadosPessoaisComponent implements OnInit {
-  nome: string;
-  email: string;
-  idade: Number;
-  sexo: string;
-  cidade: string;
 
-  constructor() { }
+  @Input() customer: Customer;
+  @Output() customerChange: EventEmitter<Customer> = new EventEmitter();
 
-  salvarDados(event) {
-    console.log("nome: " + this.nome);
-    console.log("email: " + this.email);
-    console.log("idade: " + this.idade);
-    console.log("sexo: " + this.sexo);
-    console.log("sexo: " + this.cidade);
-    
-   }
+  constructor() {
+  }
+
+  update(){
+    this.customerChange.emit(this.customer);
+  }
 
   ngOnInit() {
-  
+    this.customer = new Customer();
   }
 
 }
