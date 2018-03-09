@@ -10,14 +10,3 @@
 .vazia{
     color: grey;
 }
-
-.font {
-    text-shadow: 
-        1px 0px 0px red, 
-        -1px 0px 0px red, 
-        0px 1px 0px red, 
-        0px -1px 0px red;
-    font-size: 100%;
-    font-weight: bold;
-    color: #FFF;
-}
