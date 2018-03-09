@@ -9,6 +9,7 @@ export class QuestionComponent implements OnInit {
 
   @Input() question: string;
   @Input() answer: string;
+  @Input() comment: string;
 
   constructor() {
   }
