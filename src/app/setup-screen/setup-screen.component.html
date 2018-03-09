@@ -1,14 +1,22 @@
-<p>
-    <label class="form-check-label" for="urlLogo">Url Logo:</label>
-    <input class="form-control" type="text" name="urlLogo" id="UrlLogo" placeholder="Url Logo">
+<div class="input-group col-md-12">
+    <span class="input-group-addon" id="basic-addon1">@</span>
+    <input [(ngModel)]="urlLogo" type="text" class="form-control" placeholder="Logo Url" aria-describedby="basic-addon1" />
 
-    <label class="form-check-label" for="alturaLogo">Altura Logo:</label>
-    <input class="form-control" type="text" name="alturaLogo" id="alturaLogo" placeholder="Altura da Logo">
+</div>
+<br>
 
-    <label class="form-check-label" for="larguraLogo">Largura Logo:</label>
-    <input class="form-control" type="text" name="larguraLogo" id="larguraLogo" placeholder="Largura Logo">
+<div class="input-group col-md-12">
+    <span class="input-group-addon" id="basic-addon1">@</span>
+    <input [(ngModel)]="height" type="text" class="form-control" placeholder="Logo Height" aria-describedby="basic-addon1" />
+</div>
 
-    <button type="button" class="btn btn-primary">Submit</button>
+<br>
+
+<div class="input-group col-md-12">
+    <span class="input-group-addon" id="basic-addon1">@</span>
+    <input [(ngModel)]="width" type="text" class="form-control" placeholder="Logo Width" aria-describedby="basic-addon1" />
+</div>
+<br>
 
 
-</p>
+<button type="button" class="btn btn-primary" (click)="eventTest()">Submit</button>
