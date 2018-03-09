@@ -1,0 +1,30 @@
+.bola-cheia{
+    border-radius: 50%;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border: 1px solid #000000;
+    background-color: rgb(23, 240, 23);
+    margin-right: 15px;
+}
+
+.bola-vazia {
+    border-radius: 50%;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border: 1px solid #000000;
+    background-color: rgb(252, 241, 241);
+    margin-right: 15px;
+}
+
+.font {
+    text-shadow: 
+        1px 0px 0px red, 
+        -1px 0px 0px red, 
+        0px 1px 0px red, 
+        0px -1px 0px red;
+    font-size: 100%;
+    font-weight: bold;
+    color: #FFF;
+}
