@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Configuracoes } from '../configuracoes';
 
 @Component({
   selector: 'app-dados-pessoais',
@@ -11,7 +12,8 @@ export class DadosPessoaisComponent implements OnInit {
   email: string;
   idade: Number;
   sexo: string;
-  
+  cidade: string;
+
   constructor() { }
 
   salvarDados(event) {
@@ -19,7 +21,9 @@ export class DadosPessoaisComponent implements OnInit {
     console.log("email: " + this.email);
     console.log("idade: " + this.idade);
     console.log("sexo: " + this.sexo);
-      }
+    console.log("sexo: " + this.cidade);
+    
+   }
 
   ngOnInit() {
   
