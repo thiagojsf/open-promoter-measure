@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Configuracoes } from '../configuracoes';
 
 @Component({
   selector: 'app-dados-pessoais',
