@@ -58,6 +58,23 @@
 			});
 		})
 		modulo.controller("meuController3", function($scope) {
+			$scope.ontem = new Date(2018, 3, 20);
+			$scope.hoje = new Date();
+			$scope.dataEmissao = new Date(2018, 3, 20);
+			$scope.dataVencimento = new Date(2018, 6, 20);
+
+			if ($scope.dataVencimento <= $scope.hoje)
+			{
+				$scope.textoVencimento = "Venceu";
+				$scope.estaVencido = true;
+				
+			}
+			else
+			{
+				$scope.textoVencimento = "Vence";
+				$scope.estaVencido = false;
+			}
+			
 			
 		})
 		.factory("svcAvaliacao", function($http){
@@ -78,6 +95,9 @@
 	<style type="text/css">
 		.titulo {
 			font-size: 20px;
+		}
+		.texto-vermelho {
+			color: red;
 		}
 	</style>
   </head>
@@ -104,7 +124,7 @@
 			<div class="info-financeiras col-xs-10">
 				<div class="titulo text-center"><strong>SAMSUNG</strong></div>
 				<div class="numero-titulo text-center">Nº 5321 (NF 32531/01) 3ª Parcela</div>
-				<div class="descr-titulo text-center">Emitido em 15/02/2018 / Venceu em 03/03/2018"></div>
+				<div class="descr-titulo text-center">Emitido em 15/02/2018 / <span ng-class=" { 'texto-vermelho' : estaVencido } ">{{ textoVencimento }} em {{ dataVencimento | date:"dd/MM/yyyy" }}</span>></div>
 				<div class="valores text-center">R$ 5.000,00 (em aberto R$ 4.200,53)</div>
 				<div class="info-adicionais text-center">Linx SP</div>
 			</div>
