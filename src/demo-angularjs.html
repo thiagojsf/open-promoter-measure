@@ -62,6 +62,8 @@
 			$scope.hoje = new Date();
 			$scope.dataEmissao = new Date(2018, 3, 20);
 			$scope.dataVencimento = new Date(2018, 6, 20);
+			$scope.valorTotal = 5000;
+			$scope.valorEmAberto = 4200.53;
 
 			if ($scope.dataVencimento <= $scope.hoje)
 			{
@@ -100,6 +102,7 @@
 			color: red;
 		}
 	</style>
+	<script type="text/javascript" src="http://code.angularjs.org/1.6.9/i18n/angular-locale_pt-br.js"></script>
   </head>
   <body>
   <!--
@@ -125,7 +128,7 @@
 				<div class="titulo text-center"><strong>SAMSUNG</strong></div>
 				<div class="numero-titulo text-center">Nº 5321 (NF 32531/01) 3ª Parcela</div>
 				<div class="descr-titulo text-center">Emitido em 15/02/2018 / <span ng-class=" { 'texto-vermelho' : estaVencido } ">{{ textoVencimento }} em {{ dataVencimento | date:"dd/MM/yyyy" }}</span>></div>
-				<div class="valores text-center">R$ 5.000,00 (em aberto R$ 4.200,53)</div>
+				<div class="valores text-center">{{ valorTotal | currency }} (em aberto {{ valorEmAberto | currency }})</div>
 				<div class="info-adicionais text-center">Linx SP</div>
 			</div>
 			<div class="icones col-xs-2">
