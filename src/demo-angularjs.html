@@ -144,6 +144,9 @@
 			background-color: transparent;
 			border: 1px solid #5b2e90;
 			border-radius: 0.5em;
+			margin-left: 0px;
+    		margin-right: 0px;
+			margin-bottom: 5px;
 		}
 	</style>
 	<script type="text/javascript" src="http://code.angularjs.org/1.6.9/i18n/angular-locale_pt-br.js"></script>
@@ -169,7 +172,7 @@
 	<div class="container" ng-controller="meuController3">
 		<input type="search" ng-model="textoPesquisa" />
 		<div class="row">
-			<div class="card row col-md-5" ng-repeat="Titulo in Titulos | filter:textoPesquisa">
+			<div class="card row col-md-6" ng-repeat="Titulo in Titulos | filter:textoPesquisa">
 				<div class="info-financeiras col-xs-10">
 					<div class="titulo text-center"><strong>{{ Titulo.NomeCliente }}</strong></div>
 					<div class="numero-titulo text-center">Nº {{Titulo.NrDocumento}} (NF {{numeroNota}}/{{serieNota}}) {{Titulo.Parcela}}ª Parcela</div>
