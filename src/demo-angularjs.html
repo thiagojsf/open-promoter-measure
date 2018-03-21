@@ -238,7 +238,7 @@
 					<h4 class="modal-title">Pedido de Venda</h4>
 				 </div>
 				 <div class="modal-body">
-					<div ng-repeat="Filial in Filiais" ng-click="selecionarFilial(Filial)">{{ Filial.NomeFilial }}</div>
+					<div ng-repeat="Filial in Filiais" ng-click="selecionarFilial(Filial)" data-dismiss="modal">{{ Filial.NomeFilial }}</div>
 				 </div>
 				 <div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
