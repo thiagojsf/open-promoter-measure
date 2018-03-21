@@ -10,7 +10,7 @@
 		
 		var caminho = "http://service-hom.linxauto.com.br/LinxDmsOperacionalAvaliacao/GetDmsAvaliacaoByEntitySearchNoAssociations?$orderby=IdAvaliacao&$top=100&$inlinecount=allpages&jEntitySearch=DmsAvaliacao%7B%7DGrupoAvaliacao%7B%7D";
 		var caminho2 = "http://service-hom.linxauto.com.br/DMSFichaMobile/CarregarOpcionais?IdTipoVeiculo=1";
-		var urlTitulos = "http://qua.ux.linx.com.br/Service/5.X/LinxAdmFinConsultaConsultaAnaliticaContasPagar/GetFinPagarAnaliticoByEntitySearchNoAssociations?$orderby=Agrupador&jEntitySearch=FinPagarAnalitico%7B%7D"
+		var urlTitulos = "http://qua.ux.linx.com.br/Service/5.X/LinxAdmFinConsultaConsultaAnaliticaContaReceber/GetFinReceberAnaliticoByEntitySearchNoAssociations?$orderby=Adquirente&jEntitySearch=FinReceberAnalitico%7BEmissaoDe%23%3E%3D%23T2018-03-01%252000%253A00%253A00.000%3BEmissaoDe%23%3C%3D%23T2018-03-01%252023%253A59%253A59.999%3BLxTipo%23%3D%3D%23I1%7D"
 
 		var request = function(url, $http, emCasoDeSucesso){
 		
@@ -73,7 +73,7 @@
 			$scope.filial = "Linx SP";
 
 			svcTitulos.carregaTitulosAPagar(function(res){
-				$scope.Titulos = res.data.Results;
+				$scope.Titulos = res.data;
 			});
 
 			if ($scope.dataVencimento <= $scope.hoje)
@@ -108,7 +108,6 @@
 					})
 				}
 			}
-			urlTitulos
 		})
 	</script>
   
@@ -144,7 +143,7 @@
     </div>
 	-->
 	<div class="container" ng-controller="meuController3">
-		<div class="card row">
+		<div class="card row" ng-repeat="Titulo in Titulos">
 			<div class="info-financeiras col-xs-10">
 				<div class="titulo text-center"><strong>{{ fornecedor }}</strong></div>
 				<div class="numero-titulo text-center">Nº {{numeroTitulo}} (NF {{numeroNota}}/{{serieNota}}) {{parcela}}ª Parcela</div>
@@ -157,6 +156,7 @@
 				<div class="status">A</div>
 			</div>
 		</div>
+		{{Titulos}}
 	</div>
   </body>
 </html>
