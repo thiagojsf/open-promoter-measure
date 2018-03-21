@@ -138,6 +138,13 @@
 		.texto-vermelho {
 			color: red;
 		}
+		.card {
+			border-radius: 0.5em;
+			text-align: center;
+			background-color: transparent;
+			border: 1px solid #5b2e90;
+			border-radius: 0.5em;
+		}
 	</style>
 	<script type="text/javascript" src="http://code.angularjs.org/1.6.9/i18n/angular-locale_pt-br.js"></script>
   </head>
@@ -160,17 +167,20 @@
     </div>
 	-->
 	<div class="container" ng-controller="meuController3">
-		<div class="card row" ng-repeat="Titulo in Titulos">
-			<div class="info-financeiras col-xs-10">
-				<div class="titulo text-center"><strong>{{ Titulo.NomeCliente }}</strong></div>
-				<div class="numero-titulo text-center">Nº {{Titulo.NrDocumento}} (NF {{numeroNota}}/{{serieNota}}) {{Titulo.Parcela}}ª Parcela</div>
-				<div class="descr-titulo text-center">Emitido em {{Titulo.Emissao | date:"dd/MM/yyyy"}} / <span ng-class=" { 'texto-vermelho' : Titulo.EstaVencido } ">{{ Titulo.TextoVencimento }} em {{ Titulo.Vencimento | date:"dd/MM/yyyy" }}</span></div>
-				<div class="valores text-center">{{ Titulo.ValorOriginal | currency }} <span ng-if="Titulo.ValorEmAberto > 0">(em aberto {{ Titulo.ValorEmAberto | currency }})</span></div>
-				<div class="info-adicionais text-center">{{Titulo.NomeFilial}}</div>
-			</div>
-			<div class="icones col-xs-2">
-				<div class="tipo" title="{{Titulo.LxStatusDocName}}">{{ Titulo.AbreviacaoTitulo }}</div>
-				<div class="status">A</div>
+		<input type="search" ng-model="textoPesquisa" />
+		<div class="row">
+			<div class="card row col-md-5" ng-repeat="Titulo in Titulos | filter:textoPesquisa">
+				<div class="info-financeiras col-xs-10">
+					<div class="titulo text-center"><strong>{{ Titulo.NomeCliente }}</strong></div>
+					<div class="numero-titulo text-center">Nº {{Titulo.NrDocumento}} (NF {{numeroNota}}/{{serieNota}}) {{Titulo.Parcela}}ª Parcela</div>
+					<div class="descr-titulo text-center">Emitido em {{Titulo.Emissao | date:"dd/MM/yyyy"}} / <span ng-class=" { 'texto-vermelho' : Titulo.EstaVencido } ">{{ Titulo.TextoVencimento }} em {{ Titulo.Vencimento | date:"dd/MM/yyyy" }}</span></div>
+					<div class="valores text-center">{{ Titulo.ValorOriginal | currency }} <span ng-if="Titulo.ValorEmAberto > 0">(em aberto {{ Titulo.ValorEmAberto | currency }})</span></div>
+					<div class="info-adicionais text-center">{{Titulo.NomeFilial}}</div>
+				</div>
+				<div class="icones col-xs-2">
+					<div class="tipo" title="{{Titulo.LxStatusDocName}}">{{ Titulo.AbreviacaoTitulo }}</div>
+					<div class="status">A</div>
+				</div>
 			</div>
 		</div>
 	</div>
