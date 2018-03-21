@@ -7,12 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SetupScreenComponent implements OnInit {
 public urlLogo:string;
-public altura:number;
-public largura:number;
+public height:number;
+public width:number;
+
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  eventTest() {
+    console.log(this);
   }
 
 }
