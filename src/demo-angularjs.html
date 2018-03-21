@@ -63,7 +63,13 @@
 			$scope.dataEmissao = new Date(2018, 3, 20);
 			$scope.dataVencimento = new Date(2018, 6, 20);
 			$scope.valorTotal = 5000;
-			$scope.valorEmAberto = 4200.53;
+			$scope.valorEmAberto = 0;
+			$scope.numeroTitulo = 5321;
+			$scope.numeroNota = 32531;
+			$scope.serieNota = 1;
+			$scope.parcela = 3;
+			$scope.fornecedor = "SAMSUNG";
+			$scope.filial = "Linx SP";
 
 			if ($scope.dataVencimento <= $scope.hoje)
 			{
@@ -125,11 +131,11 @@
 	<div class="container" ng-controller="meuController3">
 		<div class="card row">
 			<div class="info-financeiras col-xs-10">
-				<div class="titulo text-center"><strong>SAMSUNG</strong></div>
-				<div class="numero-titulo text-center">Nº 5321 (NF 32531/01) 3ª Parcela</div>
-				<div class="descr-titulo text-center">Emitido em 15/02/2018 / <span ng-class=" { 'texto-vermelho' : estaVencido } ">{{ textoVencimento }} em {{ dataVencimento | date:"dd/MM/yyyy" }}</span>></div>
-				<div class="valores text-center">{{ valorTotal | currency }} (em aberto {{ valorEmAberto | currency }})</div>
-				<div class="info-adicionais text-center">Linx SP</div>
+				<div class="titulo text-center"><strong>{{ fornecedor }}</strong></div>
+				<div class="numero-titulo text-center">Nº {{numeroTitulo}} (NF {{numeroNota}}/{{serie}}) {{parcela}}ª Parcela</div>
+				<div class="descr-titulo text-center">Emitido em {{dataEmissao | date:"dd/MM/yyyy"}} / <span ng-class=" { 'texto-vermelho' : estaVencido } ">{{ textoVencimento }} em {{ dataVencimento | date:"dd/MM/yyyy" }}</span></div>
+				<div class="valores text-center">{{ valorTotal | currency }} <span ng-if="valorEmAberto > 0">(em aberto {{ valorEmAberto | currency }})</span></div>
+				<div class="info-adicionais text-center">{{filial}}</div>
 			</div>
 			<div class="icones col-xs-2">
 				<div class="tipo">T</div>
