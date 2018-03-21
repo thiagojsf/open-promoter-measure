@@ -90,6 +90,15 @@
 						$scope.Titulos[i].TextoVencimento = "Vence";
 						$scope.Titulos[i].EstaVencido = false;
 					}
+
+					if ($scope.Titulos[i].LxStatusDocName != undefined && $scope.Titulos[i].LxStatusDocName.length > 0)
+					{
+						$scope.Titulos[i].AbreviacaoTitulo = $scope.Titulos[i].LxStatusDocName.substring(0,1);
+					}
+					else
+					{
+
+					}
 					
 				}
 			});
@@ -160,7 +169,7 @@
 				<div class="info-adicionais text-center">{{Titulo.NomeFilial}}</div>
 			</div>
 			<div class="icones col-xs-2">
-				<div class="tipo">T</div>
+				<div class="tipo" title="{{Titulo.LxStatusDocName}}">{{ Titulo.AbreviacaoTitulo }}</div>
 				<div class="status">A</div>
 			</div>
 		</div>
