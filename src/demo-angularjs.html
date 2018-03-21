@@ -1,7 +1,8 @@
 <!doctype html>
 <html ng-app="linxAuto">
   <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
 	<script type="text/javascript">
 
 		var print = function(codigo) {
@@ -128,9 +129,9 @@
 		})
 	</script>
   
-	<link rel="stylesheet" type="text/css" href="http://app-hom.linxauto.com.br/app/resources/weblayout/linx-bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="linx-bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="http://app-hom.linxauto.com.br/app/resources/weblayout/ui-bootstrap-custom-2.5.0-csp.css" />
-	<script type="text/javascript" src="http://app-hom.linxauto.com.br/app/resources/weblayout/linx-bootstrap.js"></script>
+	<script type="text/javascript" src="linx-bootstrap.js"></script>
 	<style type="text/css">
 		.titulo {
 			font-size: 20px;
@@ -144,9 +145,12 @@
 			background-color: transparent;
 			border: 1px solid #5b2e90;
 			border-radius: 0.5em;
-			margin-left: 0px;
-    		margin-right: 0px;
+			margin-left: 5px;
+    		margin-right: 5px;
 			margin-bottom: 5px;
+		}
+		.valores {
+			font-size: 20px;
 		}
 	</style>
 	<script type="text/javascript" src="http://code.angularjs.org/1.6.9/i18n/angular-locale_pt-br.js"></script>
@@ -172,7 +176,7 @@
 	<div class="container" ng-controller="meuController3">
 		<input type="search" ng-model="textoPesquisa" />
 		<div class="row">
-			<div class="card row col-md-6" ng-repeat="Titulo in Titulos | filter:textoPesquisa">
+			<div class="card row col-md-5" ng-repeat="Titulo in Titulos | filter:textoPesquisa">
 				<div class="info-financeiras col-xs-10">
 					<div class="titulo text-center"><strong>{{ Titulo.NomeCliente }}</strong></div>
 					<div class="numero-titulo text-center">Nº {{Titulo.NrDocumento}} (NF {{numeroNota}}/{{serieNota}}) {{Titulo.Parcela}}ª Parcela</div>
@@ -186,6 +190,25 @@
 				</div>
 			</div>
 		</div>
+		<button data-toggle="modal" data-target="#modalFiliais">Abrir filiais</button>
+
+		<div class="modal fade" id="modalFiliais" role="dialog">
+			<div class="modal-dialog full-size">
+			  <div class="modal-content">
+				 <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Pedido de Venda</h4>
+				 </div>
+				 <div class="modal-body">
+					Modal
+				 </div>
+				 <div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+				 </div>
+			  </div>
+			</div>
+		 </div>
+
 	</div>
   </body>
 </html>
