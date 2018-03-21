@@ -1,0 +1,118 @@
+<!doctype html>
+<html ng-app="linxAuto">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script type="text/javascript">
+
+		var print = function(codigo) {
+			console.log("teste ", codigo);
+		}
+		
+		var caminho = "http://service-hom.linxauto.com.br/LinxDmsOperacionalAvaliacao/GetDmsAvaliacaoByEntitySearchNoAssociations?$orderby=IdAvaliacao&$top=100&$inlinecount=allpages&jEntitySearch=DmsAvaliacao%7B%7DGrupoAvaliacao%7B%7D";
+		var caminho2 = "http://service-hom.linxauto.com.br/DMSFichaMobile/CarregarOpcionais?IdTipoVeiculo=1";
+
+		var request = function(url, $http, emCasoDeSucesso){
+		
+			var $headers = {
+				Application : "2d606cc0-ea7e-470e-b535-23f3c7a29a18",
+				AuthorizationToken : "9312885c-fb42-441f-a4e1-fa74e6239d2b",
+				Branch : -1,
+				CurrentCompany : "fd88c975-4e60-483f-a21c-b21d1357bc5f",
+				CurrentUser : "4ca72e85-1fbb-4877-8e90-be9d702b8da9",
+				EconomicGroup : "fd88c975-4e60-483f-a21c-b21d1357bc5f",
+				Environment : 4
+			};
+		
+			var parametrosRequisicao = {
+				headers : $headers,
+				url : url,
+				method : 'GET',
+				crossDomain: true,
+			};
+			
+			$http(parametrosRequisicao).then(function(res){
+				emCasoDeSucesso(res);
+			}, function(err){
+				console.log(err);
+			});
+		};
+
+		var funcaoController = function($scope, $http, svcAvaliacao) {
+			$scope.yourName = "Guilherme";
+			print(2);
+			request(caminho, $http, function(response){
+				console.log("LInha 43");
+				console.log(response.data);
+			});
+		};
+		
+		var dependencias = [];
+	
+		var modulo = angular.module('linxAuto', dependencias);
+		modulo.controller("meuController", funcaoController);
+		modulo.controller("meuController2", function($scope, svcAvaliacao){
+			$scope.yourName = "Paulo";
+			print(1);
+			svcAvaliacao.carregarOpcionais(function(response){
+				$scope.Opcionais = response.data;
+			});
+		})
+		modulo.controller("meuController3", function($scope) {
+			
+		})
+		.factory("svcAvaliacao", function($http){
+			var obj = {
+				carregarOpcionais : function(emCasoDeSucesso){
+					request(caminho2, $http, function(response){
+						emCasoDeSucesso(response);
+					});
+				}
+			}
+			return obj;
+		});
+	</script>
+  
+	<link rel="stylesheet" type="text/css" href="http://app-hom.linxauto.com.br/app/resources/weblayout/linx-bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="http://app-hom.linxauto.com.br/app/resources/weblayout/ui-bootstrap-custom-2.5.0-csp.css" />
+	<script type="text/javascript" src="http://app-hom.linxauto.com.br/app/resources/weblayout/linx-bootstrap.js"></script>
+	<style type="text/css">
+		.titulo {
+			font-size: 20px;
+		}
+	</style>
+  </head>
+  <body>
+  <!--
+    <div ng-controller="meuController">
+      <label>Name:</label>
+      <input type="text" ng-model="yourName" placeholder="Enter a name here">
+      <hr>
+      <h1 ng-show="yourName == 'Thiago'">Hello {{yourName}}!</h1>
+	  <h1 ng-show="yourName != 'Thiago'">Bye {{yourName}}!</h1>
+    </div>
+	<div ng-controller="meuController2">
+      <label>Name:</label>
+      <input type="text" ng-model="yourName" placeholder="Enter a name here">
+      <hr>
+		<div ng-repeat="Opcional in Opcionais">
+			<input type="text" ng-model="Opcional.DescOpcional" />
+		</div>
+    </div>
+	-->
+	<div class="container" ng-controller="meuController3">
+		<div class="card row">
+			<div class="info-financeiras col-xs-10">
+				<div class="titulo text-center"><strong>SAMSUNG</strong></div>
+				<div class="numero-titulo text-center">Nº 5321 (NF 32531/01) 3ª Parcela</div>
+				<div class="descr-titulo text-center">Emitido em 15/02/2018 / Venceu em 03/03/2018"></div>
+				<div class="valores text-center">R$ 5.000,00 (em aberto R$ 4.200,53)</div>
+				<div class="info-adicionais text-center">Linx SP</div>
+			</div>
+			<div class="icones col-xs-2">
+				<div class="tipo">T</div>
+				<div class="status">A</div>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>
