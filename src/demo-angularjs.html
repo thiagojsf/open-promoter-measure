@@ -74,19 +74,27 @@
 
 			svcTitulos.carregaTitulosAPagar(function(res){
 				$scope.Titulos = res.data;
+				for (var i = 0; i < $scope.Titulos.length; i++) {
+
+					$scope.Titulos[i].Emissao = new Date($scope.Titulos[i].Emissao);
+					$scope.Titulos[i].Vencimento = new Date($scope.Titulos[i].Vencimento);
+
+					if ($scope.Titulos[i].Vencimento <= new Date())
+					{
+						$scope.Titulos[i].TextoVencimento = "Venceu";
+						$scope.Titulos[i].EstaVencido = true;
+						
+					}
+					else
+					{
+						$scope.Titulos[i].TextoVencimento = "Vence";
+						$scope.Titulos[i].EstaVencido = false;
+					}
+					
+				}
 			});
 
-			if ($scope.dataVencimento <= $scope.hoje)
-			{
-				$scope.textoVencimento = "Venceu";
-				$scope.estaVencido = true;
-				
-			}
-			else
-			{
-				$scope.textoVencimento = "Vence";
-				$scope.estaVencido = false;
-			}
+			
 			
 			
 		})
@@ -145,9 +153,9 @@
 	<div class="container" ng-controller="meuController3">
 		<div class="card row" ng-repeat="Titulo in Titulos">
 			<div class="info-financeiras col-xs-10">
-				<div class="titulo text-center"><strong>{{ fornecedor }}</strong></div>
-				<div class="numero-titulo text-center">Nº {{numeroTitulo}} (NF {{numeroNota}}/{{serieNota}}) {{parcela}}ª Parcela</div>
-				<div class="descr-titulo text-center">Emitido em {{dataEmissao | date:"dd/MM/yyyy"}} / <span ng-class=" { 'texto-vermelho' : estaVencido } ">{{ textoVencimento }} em {{ dataVencimento | date:"dd/MM/yyyy" }}</span></div>
+				<div class="titulo text-center"><strong>{{ Titulo.NomeCliente }}</strong></div>
+				<div class="numero-titulo text-center">Nº {{Titulo.NrDocumento}} (NF {{numeroNota}}/{{serieNota}}) {{Titulo.Parcela}}ª Parcela</div>
+				<div class="descr-titulo text-center">Emitido em {{Titulo.Emissao | date:"dd/MM/yyyy"}} / <span ng-class=" { 'texto-vermelho' : EstaVencido } ">{{ TextoVencimento }} em {{ Titulo.Vencimento | date:"dd/MM/yyyy" }}</span></div>
 				<div class="valores text-center">{{ valorTotal | currency }} <span ng-if="valorEmAberto > 0">(em aberto {{ valorEmAberto | currency }})</span></div>
 				<div class="info-adicionais text-center">{{filial}}</div>
 			</div>
@@ -156,7 +164,6 @@
 				<div class="status">A</div>
 			</div>
 		</div>
-		{{Titulos}}
 	</div>
   </body>
 </html>
