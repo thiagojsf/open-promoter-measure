@@ -5,46 +5,9 @@
 
 	<script type="text/javascript">
 
-		var print = function(codigo) {
-			console.log("teste ", codigo);
-		}
-		
 		var caminho = "http://service-hom.linxauto.com.br/LinxDmsOperacionalAvaliacao/GetDmsAvaliacaoByEntitySearchNoAssociations?$orderby=IdAvaliacao&$top=100&$inlinecount=allpages&jEntitySearch=DmsAvaliacao%7B%7DGrupoAvaliacao%7B%7D";
 		var caminho2 = "http://service-hom.linxauto.com.br/DMSFichaMobile/CarregarOpcionais?IdTipoVeiculo=1";
 		var urlTitulos = "http://qua.ux.linx.com.br/Service/5.X/LinxAdmFinConsultaConsultaAnaliticaContaReceber/GetFinReceberAnaliticoByEntitySearchNoAssociations?$orderby=Adquirente&jEntitySearch=FinReceberAnalitico%7BEmissaoDe%23%3E%3D%23T2018-03-01%252000%253A00%253A00.000%3BEmissaoDe%23%3C%3D%23T2018-03-01%252023%253A59%253A59.999%3BLxTipo%23%3D%3D%23I1%7D"
-
-		var request = function(url, $http, emCasoDeSucesso, parametros){
-		
-			var $headers = {
-					Application: "6d26d800-bbf8-4843-bca9-51dbfa200bc2",
-					AuthorizationToken: "b855857d-4a05-4cdf-aefb-50e861e0914a",
-					Branch: -1,
-					CurrentCompany: "74351065-0a60-48b7-9774-ba97d99f1c9f",
-					CurrentUser: "77d21861-51fa-4af1-8063-3392c65936ac",
-					EconomicGroup: "74351065-0a60-48b7-9774-ba97d99f1c9f",
-					Environment: 1062
-			};
-		
-			var parametrosRequisicao = {
-				headers : $headers,
-				url : url,
-				method : 'GET',
-				crossDomain: true,
-			};
-
-			
-			//if (method == 'POST')
-			//		parametrosRequisicao.data = requestData;
-			//else
-			
-			parametrosRequisicao.params = parametros;
-			
-			$http(parametrosRequisicao).then(function(res){
-				emCasoDeSucesso(res);
-			}, function(err){
-				console.log(err);
-			});
-		};
 
 		var funcaoController = function($scope, $http, svcAvaliacao) {
 			$scope.yourName = "Guilherme";
@@ -66,85 +29,6 @@
 				$scope.Opcionais = response.data;
 			});
 		})
-		modulo.controller("meuController3", function($scope, svcTitulos, svcFilial) {
-			$scope.ontem = new Date(2018, 3, 20);
-			$scope.hoje = new Date();
-			$scope.dataEmissao = new Date(2018, 3, 20);
-			$scope.dataVencimento = new Date(2018, 6, 20);
-			$scope.valorTotal = 5000;
-			$scope.valorEmAberto = 0;
-			$scope.numeroTitulo = 5321;
-			$scope.numeroNota = 32531;
-			$scope.serieNota = 1;
-			$scope.parcela = 3;
-			$scope.fornecedor = "SAMSUNG";
-			$scope.filial = "Linx SP";
-
-			svcTitulos.carregaTitulosAPagar(function(res){
-				$scope.Titulos = res.data;
-				for (var i = 0; i < $scope.Titulos.length; i++) {
-
-					$scope.Titulos[i].Emissao = new Date($scope.Titulos[i].Emissao);
-					$scope.Titulos[i].Vencimento = new Date($scope.Titulos[i].Vencimento);
-
-					if ($scope.Titulos[i].Vencimento <= new Date())
-					{
-						$scope.Titulos[i].TextoVencimento = "Venceu";
-						$scope.Titulos[i].EstaVencido = true;
-						
-					}
-					else
-					{
-						$scope.Titulos[i].TextoVencimento = "Vence";
-						$scope.Titulos[i].EstaVencido = false;
-					}
-
-					if ($scope.Titulos[i].LxStatusDocName != undefined && $scope.Titulos[i].LxStatusDocName.length > 0)
-					{
-						$scope.Titulos[i].AbreviacaoTitulo = $scope.Titulos[i].LxStatusDocName.substring(0,1);
-					}
-					else
-					{
-
-					}
-					
-				}
-			});
-
-			setTimeout(function(){
-				console.log("X");
-			}, 20000);
-
-			svcFilial.carregarFiliais(function(res){
-				$scope.Filiais = res.data.Results;
-				$scope.FilialSelecionada = $scope.Filiais[0];
-			}, 5);
-			
-			$scope.selecionarFilial = function(filial) {
-				$scope.FilialSelecionada = filial;
-			}
-			
-			
-		})
-		.factory("svcAvaliacao", function($http){
-			var obj = {
-				carregarOpcionais : function(emCasoDeSucesso){
-					request(caminho2, $http, function(response){
-						emCasoDeSucesso(response);
-					});
-				}
-			}
-			return obj;
-		})
-		.factory("svcTitulos", function($http){
-			return {
-				carregaTitulosAPagar : function(emCasoDeSucesso){
-					request(urlTitulos, $http, function(res){
-						emCasoDeSucesso(res);
-					})
-				}
-			}
-		})
 		.factory("svcFilial", function($http){
 			return {
 				carregarFiliais : function(emCasoDeSucesso, top){
@@ -162,31 +46,16 @@
 			}
 		});
 	</script>
+
+	<script type="text/javascript" src="angularjs/request.js"></script>
+	<script type="text/javascript" src="angularjs/titulos/titulo.controller.js"></script>
+	<script type="text/javascript" src="angularjs/titulos/titulo.factory.js"></script>
+	<script type="text/javascript" src="angularjs/titulos/filial.factory.js"></script>
   
 	<link rel="stylesheet" type="text/css" href="linx-bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="http://app-hom.linxauto.com.br/app/resources/weblayout/ui-bootstrap-custom-2.5.0-csp.css" />
+	<link rel="stylesheet" type="text/css" href="angularjs/style.css" />
+   <link rel="stylesheet" type="text/css" href="http://app-hom.linxauto.com.br/app/resources/weblayout/ui-bootstrap-custom-2.5.0-csp.css" />
 	<script type="text/javascript" src="linx-bootstrap.js"></script>
-	<style type="text/css">
-		.titulo {
-			font-size: 20px;
-		}
-		.texto-vermelho {
-			color: red;
-		}
-		.card {
-			border-radius: 0.5em;
-			text-align: center;
-			background-color: transparent;
-			border: 1px solid #5b2e90;
-			border-radius: 0.5em;
-			margin-left: 5px;
-    		margin-right: 5px;
-			margin-bottom: 5px;
-		}
-		.valores {
-			font-size: 20px;
-		}
-	</style>
 	<script type="text/javascript" src="http://code.angularjs.org/1.6.9/i18n/angular-locale_pt-br.js"></script>
   </head>
   <body>
@@ -209,7 +78,7 @@
 	-->
 	
 
-	<div class="container" ng-controller="meuController3">
+	<div class="container" ng-controller="tituloController">
 		Filial selecionada = {{ FilialSelecionada.CodigoFilial }} - {{ FilialSelecionada.NomeFilial }}
 		<button data-toggle="modal" data-target="#modalFiliais">Abrir filiais</button>
 		<input type="search" ng-model="textoPesquisa" />
@@ -238,7 +107,15 @@
 					<h4 class="modal-title">Pedido de Venda</h4>
 				 </div>
 				 <div class="modal-body">
-					<div ng-repeat="Filial in Filiais" ng-click="selecionarFilial(Filial)" data-dismiss="modal">{{ Filial.NomeFilial }}</div>
+					 <div>
+						 <label><input type="checkbox" ng-model="ExibirMatrizesContabeis" />Exibir matrizes contábeis</label>
+						 <label><input type="checkbox" ng-model="ExibirFiliais" />Exibir filiais</label>
+					 </div>
+					<div 
+						ng-repeat="Filial in Filiais" 
+						ng-click="selecionarFilial(Filial)" 
+						ng-if="(ExibirMatrizesContabeis && Filial.IndicaMatrizContabil == ExibirMatrizesContabeis) || (ExibirFiliais && (!Filial.IndicaMatrizContabil) == ExibirFiliais)"
+						data-dismiss="modal"><span class="item-selecionavel">{{ Filial.NomeFilial }}</span></div>
 				 </div>
 				 <div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>

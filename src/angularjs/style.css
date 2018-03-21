@@ -1,0 +1,22 @@
+.titulo {
+   font-size: 20px;
+}
+.texto-vermelho {
+   color: red;
+}
+.card {
+   border-radius: 0.5em;
+   text-align: center;
+   background-color: transparent;
+   border: 1px solid #5b2e90;
+   border-radius: 0.5em;
+   margin-left: 5px;
+    margin-right: 5px;
+   margin-bottom: 5px;
+}
+.valores {
+   font-size: 20px;
+}
+.item-selecionavel {
+   cursor: pointer;
+}
