@@ -155,8 +155,8 @@
 			<div class="info-financeiras col-xs-10">
 				<div class="titulo text-center"><strong>{{ Titulo.NomeCliente }}</strong></div>
 				<div class="numero-titulo text-center">Nº {{Titulo.NrDocumento}} (NF {{numeroNota}}/{{serieNota}}) {{Titulo.Parcela}}ª Parcela</div>
-				<div class="descr-titulo text-center">Emitido em {{Titulo.Emissao | date:"dd/MM/yyyy"}} / <span ng-class=" { 'texto-vermelho' : EstaVencido } ">{{ TextoVencimento }} em {{ Titulo.Vencimento | date:"dd/MM/yyyy" }}</span></div>
-				<div class="valores text-center">{{ Titulo.ValorOriginal | currency }} <span ng-if="valorEmAberto > 0">(em aberto {{ valorEmAberto | currency }})</span></div>
+				<div class="descr-titulo text-center">Emitido em {{Titulo.Emissao | date:"dd/MM/yyyy"}} / <span ng-class=" { 'texto-vermelho' : Titulo.EstaVencido } ">{{ Titulo.TextoVencimento }} em {{ Titulo.Vencimento | date:"dd/MM/yyyy" }}</span></div>
+				<div class="valores text-center">{{ Titulo.ValorOriginal | currency }} <span ng-if="Titulo.ValorEmAberto > 0">(em aberto {{ Titulo.ValorEmAberto | currency }})</span></div>
 				<div class="info-adicionais text-center">{{Titulo.NomeFilial}}</div>
 			</div>
 			<div class="icones col-xs-2">
