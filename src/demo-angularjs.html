@@ -10,17 +10,18 @@
 		
 		var caminho = "http://service-hom.linxauto.com.br/LinxDmsOperacionalAvaliacao/GetDmsAvaliacaoByEntitySearchNoAssociations?$orderby=IdAvaliacao&$top=100&$inlinecount=allpages&jEntitySearch=DmsAvaliacao%7B%7DGrupoAvaliacao%7B%7D";
 		var caminho2 = "http://service-hom.linxauto.com.br/DMSFichaMobile/CarregarOpcionais?IdTipoVeiculo=1";
+		var urlTitulos = "http://qua.ux.linx.com.br/Service/5.X/LinxAdmFinConsultaConsultaAnaliticaContasPagar/GetFinPagarAnaliticoByEntitySearchNoAssociations?$orderby=Agrupador&jEntitySearch=FinPagarAnalitico%7B%7D"
 
 		var request = function(url, $http, emCasoDeSucesso){
 		
 			var $headers = {
-				Application : "2d606cc0-ea7e-470e-b535-23f3c7a29a18",
-				AuthorizationToken : "9312885c-fb42-441f-a4e1-fa74e6239d2b",
-				Branch : -1,
-				CurrentCompany : "fd88c975-4e60-483f-a21c-b21d1357bc5f",
-				CurrentUser : "4ca72e85-1fbb-4877-8e90-be9d702b8da9",
-				EconomicGroup : "fd88c975-4e60-483f-a21c-b21d1357bc5f",
-				Environment : 4
+					Application: "6d26d800-bbf8-4843-bca9-51dbfa200bc2",
+					AuthorizationToken: "b855857d-4a05-4cdf-aefb-50e861e0914a",
+					Branch: -1,
+					CurrentCompany: "74351065-0a60-48b7-9774-ba97d99f1c9f",
+					CurrentUser: "77d21861-51fa-4af1-8063-3392c65936ac",
+					EconomicGroup: "74351065-0a60-48b7-9774-ba97d99f1c9f",
+					Environment: 1062
 			};
 		
 			var parametrosRequisicao = {
@@ -94,7 +95,17 @@
 				}
 			}
 			return obj;
-		});
+		})
+		.factory("svcTitulos", function($http){
+			return {
+				carregaTitulosAPagar : function(emCasoDeSucesso){
+					request(urlTitulos, $http, function(res){
+						emCasoDeSucesso(res);
+					})
+				}
+			}
+			urlTitulos
+		})
 	</script>
   
 	<link rel="stylesheet" type="text/css" href="http://app-hom.linxauto.com.br/app/resources/weblayout/linx-bootstrap.css" />
@@ -132,7 +143,7 @@
 		<div class="card row">
 			<div class="info-financeiras col-xs-10">
 				<div class="titulo text-center"><strong>{{ fornecedor }}</strong></div>
-				<div class="numero-titulo text-center">Nº {{numeroTitulo}} (NF {{numeroNota}}/{{serie}}) {{parcela}}ª Parcela</div>
+				<div class="numero-titulo text-center">Nº {{numeroTitulo}} (NF {{numeroNota}}/{{serieNota}}) {{parcela}}ª Parcela</div>
 				<div class="descr-titulo text-center">Emitido em {{dataEmissao | date:"dd/MM/yyyy"}} / <span ng-class=" { 'texto-vermelho' : estaVencido } ">{{ textoVencimento }} em {{ dataVencimento | date:"dd/MM/yyyy" }}</span></div>
 				<div class="valores text-center">{{ valorTotal | currency }} <span ng-if="valorEmAberto > 0">(em aberto {{ valorEmAberto | currency }})</span></div>
 				<div class="info-adicionais text-center">{{filial}}</div>
