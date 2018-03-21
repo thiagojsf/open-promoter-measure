@@ -58,7 +58,7 @@
 				$scope.Opcionais = response.data;
 			});
 		})
-		modulo.controller("meuController3", function($scope) {
+		modulo.controller("meuController3", function($scope, svcTitulos) {
 			$scope.ontem = new Date(2018, 3, 20);
 			$scope.hoje = new Date();
 			$scope.dataEmissao = new Date(2018, 3, 20);
@@ -71,6 +71,10 @@
 			$scope.parcela = 3;
 			$scope.fornecedor = "SAMSUNG";
 			$scope.filial = "Linx SP";
+
+			svcTitulos.carregaTitulosAPagar(function(res){
+				$scope.Titulos = res.data.Results;
+			});
 
 			if ($scope.dataVencimento <= $scope.hoje)
 			{
