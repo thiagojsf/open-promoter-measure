@@ -117,8 +117,12 @@
 
 			svcFilial.carregarFiliais(function(res){
 				$scope.Filiais = res.data.Results;
+				$scope.FilialSelecionada = $scope.Filiais[0];
 			}, 5);
 			
+			$scope.selecionarFilial = function(filial) {
+				$scope.FilialSelecionada = filial;
+			}
 			
 			
 		})
@@ -203,7 +207,11 @@
 		</div>
     </div>
 	-->
+	
+
 	<div class="container" ng-controller="meuController3">
+		Filial selecionada = {{ FilialSelecionada.CodigoFilial }} - {{ FilialSelecionada.NomeFilial }}
+		<button data-toggle="modal" data-target="#modalFiliais">Abrir filiais</button>
 		<input type="search" ng-model="textoPesquisa" />
 		<div class="row">
 			<div class="card row col-md-5" ng-repeat="Titulo in Titulos | filter:textoPesquisa">
@@ -220,7 +228,7 @@
 				</div>
 			</div>
 		</div>
-		<button data-toggle="modal" data-target="#modalFiliais">Abrir filiais</button>
+		
 
 		<div class="modal fade" id="modalFiliais" role="dialog">
 			<div class="modal-dialog full-size">
@@ -230,7 +238,7 @@
 					<h4 class="modal-title">Pedido de Venda</h4>
 				 </div>
 				 <div class="modal-body">
-					Modal
+					<div ng-repeat="Filial in Filiais" ng-click="selecionarFilial(Filial)">{{ Filial.NomeFilial }}</div>
 				 </div>
 				 <div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
