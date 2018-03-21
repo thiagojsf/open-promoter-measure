@@ -13,7 +13,7 @@
 		var caminho2 = "http://service-hom.linxauto.com.br/DMSFichaMobile/CarregarOpcionais?IdTipoVeiculo=1";
 		var urlTitulos = "http://qua.ux.linx.com.br/Service/5.X/LinxAdmFinConsultaConsultaAnaliticaContaReceber/GetFinReceberAnaliticoByEntitySearchNoAssociations?$orderby=Adquirente&jEntitySearch=FinReceberAnalitico%7BEmissaoDe%23%3E%3D%23T2018-03-01%252000%253A00%253A00.000%3BEmissaoDe%23%3C%3D%23T2018-03-01%252023%253A59%253A59.999%3BLxTipo%23%3D%3D%23I1%7D"
 
-		var request = function(url, $http, emCasoDeSucesso){
+		var request = function(url, $http, emCasoDeSucesso, parametros){
 		
 			var $headers = {
 					Application: "6d26d800-bbf8-4843-bca9-51dbfa200bc2",
@@ -31,6 +31,13 @@
 				method : 'GET',
 				crossDomain: true,
 			};
+
+			
+			//if (method == 'POST')
+			//		parametrosRequisicao.data = requestData;
+			//else
+			
+			parametrosRequisicao.params = parametros;
 			
 			$http(parametrosRequisicao).then(function(res){
 				emCasoDeSucesso(res);
@@ -59,7 +66,7 @@
 				$scope.Opcionais = response.data;
 			});
 		})
-		modulo.controller("meuController3", function($scope, svcTitulos) {
+		modulo.controller("meuController3", function($scope, svcTitulos, svcFilial) {
 			$scope.ontem = new Date(2018, 3, 20);
 			$scope.hoje = new Date();
 			$scope.dataEmissao = new Date(2018, 3, 20);
@@ -104,6 +111,13 @@
 				}
 			});
 
+			setTimeout(function(){
+				console.log("X");
+			}, 20000);
+
+			svcFilial.carregarFiliais(function(res){
+				$scope.Filiais = res.data.Results;
+			}, 5);
 			
 			
 			
@@ -127,6 +141,22 @@
 				}
 			}
 		})
+		.factory("svcFilial", function($http){
+			return {
+				carregarFiliais : function(emCasoDeSucesso, top){
+					var url = "http://qua.ux.linx.com.br/Service/5.X/LinxCadastroBaseCadastroPfj/GetTbcFilialByEntitySearchNoAssociations";
+					
+					var parametrosHttp = {
+						"$orderby" : "IdPfj",
+						"$top" : top,
+						"$inlinecount" : "allpages",
+						"jEntitySearch" : "TbcFilial%7B%7DTbcPfjTelefone%7B%7DTbcPfjEndEletronico%7B%7DLjvLoja%7B%7DStkDeposito%7B%7DTbcFilialIestUf%7B%7D"
+					};
+
+					request(url, $http, emCasoDeSucesso, parametrosHttp);
+				}
+			}
+		});
 	</script>
   
 	<link rel="stylesheet" type="text/css" href="linx-bootstrap.css" />
