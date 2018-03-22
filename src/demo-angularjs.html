@@ -1,60 +1,28 @@
 <!doctype html>
 <html ng-app="linxAuto">
   <head>
-	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
+	<link rel="stylesheet" type="text/css" href="linx-bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="angularjs/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://app-hom.linxauto.com.br/app/resources/weblayout/ui-bootstrap-custom-2.5.0-csp.css" />
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script type="text/javascript">
 
 		var caminho = "http://service-hom.linxauto.com.br/LinxDmsOperacionalAvaliacao/GetDmsAvaliacaoByEntitySearchNoAssociations?$orderby=IdAvaliacao&$top=100&$inlinecount=allpages&jEntitySearch=DmsAvaliacao%7B%7DGrupoAvaliacao%7B%7D";
 		var caminho2 = "http://service-hom.linxauto.com.br/DMSFichaMobile/CarregarOpcionais?IdTipoVeiculo=1";
 		var urlTitulos = "http://qua.ux.linx.com.br/Service/5.X/LinxAdmFinConsultaConsultaAnaliticaContaReceber/GetFinReceberAnaliticoByEntitySearchNoAssociations?$orderby=Adquirente&jEntitySearch=FinReceberAnalitico%7BEmissaoDe%23%3E%3D%23T2018-03-01%252000%253A00%253A00.000%3BEmissaoDe%23%3C%3D%23T2018-03-01%252023%253A59%253A59.999%3BLxTipo%23%3D%3D%23I1%7D"
 
-		var funcaoController = function($scope, $http, svcAvaliacao) {
-			$scope.yourName = "Guilherme";
-			print(2);
-			request(caminho, $http, function(response){
-				console.log("LInha 43");
-				console.log(response.data);
-			});
-		};
-		
 		var dependencias = [];
 	
 		var modulo = angular.module('linxAuto', dependencias);
-		modulo.controller("meuController", funcaoController);
-		modulo.controller("meuController2", function($scope, svcAvaliacao){
-			$scope.yourName = "Paulo";
-			print(1);
-			svcAvaliacao.carregarOpcionais(function(response){
-				$scope.Opcionais = response.data;
-			});
-		})
-		.factory("svcFilial", function($http){
-			return {
-				carregarFiliais : function(emCasoDeSucesso, top){
-					var url = "http://qua.ux.linx.com.br/Service/5.X/LinxCadastroBaseCadastroPfj/GetTbcFilialByEntitySearchNoAssociations";
-					
-					var parametrosHttp = {
-						"$orderby" : "IdPfj",
-						"$top" : top,
-						"$inlinecount" : "allpages",
-						"jEntitySearch" : "TbcFilial{}TbcPfjTelefone{}TbcPfjEndEletronico{}LjvLoja{}StkDeposito{}TbcFilialIestUf{}"
-					};
+		
 
-					request(url, $http, emCasoDeSucesso, parametrosHttp);
-				}
-			}
-		});
 	</script>
-
 	<script type="text/javascript" src="angularjs/request.js"></script>
 	<script type="text/javascript" src="angularjs/titulos/titulo.controller.js"></script>
 	<script type="text/javascript" src="angularjs/titulos/titulo.factory.js"></script>
-	<script type="text/javascript" src="angularjs/titulos/filial.factory.js"></script>
-  
-	<link rel="stylesheet" type="text/css" href="linx-bootstrap.css" />
-	<link rel="stylesheet" type="text/css" href="angularjs/style.css" />
-   <link rel="stylesheet" type="text/css" href="http://app-hom.linxauto.com.br/app/resources/weblayout/ui-bootstrap-custom-2.5.0-csp.css" />
+	<script type="text/javascript" src="angularjs/filiais/filial.factory.js"></script>
 	<script type="text/javascript" src="linx-bootstrap.js"></script>
 	<script type="text/javascript" src="http://code.angularjs.org/1.6.9/i18n/angular-locale_pt-br.js"></script>
   </head>
@@ -111,8 +79,9 @@
 						 <label><input type="checkbox" ng-model="ExibirMatrizesContabeis" />Exibir matrizes contábeis</label>
 						 <label><input type="checkbox" ng-model="ExibirFiliais" />Exibir filiais</label>
 					 </div>
+					 <input type="search" ng-model="textoPesquisaFilial" placeholder="Pesquisa" />
 					<div 
-						ng-repeat="Filial in Filiais" 
+						ng-repeat="Filial in Filiais | filter:textoPesquisaFilial" 
 						ng-click="selecionarFilial(Filial)" 
 						ng-if="(ExibirMatrizesContabeis && Filial.IndicaMatrizContabil == ExibirMatrizesContabeis) || (ExibirFiliais && (!Filial.IndicaMatrizContabil) == ExibirFiliais)"
 						data-dismiss="modal"><span class="item-selecionavel">{{ Filial.NomeFilial }}</span></div>
